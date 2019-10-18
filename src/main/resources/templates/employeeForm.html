@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Add</title>
+</head>
+<body>
+<ul>
+    <li th:each="e:${#fields.detailedErrors()}">
+        <span th:text="${e.global}"></span> | <span th:text="${e.fieldName}"></span> | <span th:text="${e.message}"></span>
+
+    </li>
+</ul>
+
+<form action="#" th:action="@{/}" th:object="${employee}" method="post">
+    <p>FirstName: <input th:field="*{firstName}"></p>
+    <p>Last Name: <input th:field="*{lastName}"></p>
+    <p>Address: </p>
+    <p>Street: <input th:field="*{address.street}"></p>
+    <p>Zip Code: <input th:field="*{address.zipCode}"></p>
+    <input type="submit" value="Add employee">
+
+
+    <br/><td th:text="${employee} ? 'employee valid'"></td>
+    <br/><span th:if="${employee.firstName}">employee.firstName valid</span>
+    <br/><span th:unless="${employee.firstName}">employee.firstName not valid</span>
+    <br/><td th:text="${employee.firstName}=='' ? 'employee empty' : 'employee not empty'" ></td>
+    <br/><td th:text="${employee.firstName} ? 'employee empty'" ></td>
+</form>
+
+</body>
+</html>
